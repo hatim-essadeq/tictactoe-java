@@ -29,7 +29,7 @@ public class Game {
         if (!isWinner(player2, board) && isDraw(board)) {
             System.out.println("is " + player1.getName() + " - " + player1.getChoice());
             play(player1, board);
-        } else if (isWinner(player2, board) && isDraw(board)) {
+        } else if (!isWinner(player1, board) && isDraw(board)) {
             System.out.println("winner " + player2.getName() + " - " + player2.getChoice());
             return true;
         }
@@ -43,13 +43,20 @@ public class Game {
         int i = getY(position);
         int j = getX(position);
         int len = board.length - 1;
-        if ((i <= len && j <= len) && board[i][j] == '*') {
-            board[i][j] = player.getChoice();
-            display(board);
+        if (position.contains(".") && i != -1 && j != -1) {
+
+            if ((i <= len && j <= len) && board[i][j] == '*') {
+                board[i][j] = player.getChoice();
+                display(board);
+            } else {
+                System.out.println("Error, try another position");
+                play(player, board);
+            }
         } else {
-            System.out.println("Error, try another position");
+            System.out.println("Error, Incorrect format, try again. EX. x.y");
             play(player, board);
         }
+
     }
 
     private boolean isWinner(Player player, char[][] board) {
@@ -64,6 +71,7 @@ public class Game {
                 }
             }
             if (winner) {
+                System.out.println("inside" + player.getChoice());
                 player.setScore(player.getScore() + 1);
                 return true;
             }
@@ -101,7 +109,6 @@ public class Game {
         for (int i = board.length - 1; i >= 0; i--) {
             if (board[(board.length - 1) - i][i] == player.getChoice()) {
                 winner = true;
-
             } else {
                 winner = false;
                 break;
@@ -130,11 +137,19 @@ public class Game {
     }
 
     private int getX(String position) {
-        return Integer.parseInt(position.split("\\.")[1]);
+        return getInt(position.split("\\.")[1]);
     }
 
     private int getY(String position) {
-        return Integer.parseInt(position.split("\\.")[0]);
+        return getInt(position.split("\\.")[0]);
+    }
+
+    private int getInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
     }
 
     private void display(char[][] board) {

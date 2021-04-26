@@ -41,7 +41,7 @@ public class Main {
         System.out.println();
         String answer = "yes";
         while (answer.equals("yes")) {
-            board = new char[][]{{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}};
+            board = new char[][]{{'*', '*', '*', '*'}, {'*', '*', '*', '*'}, {'*', '*', '*', '*'}, {'*', '*', '*', '*'}};
             game.begin(board);
             System.out.println("==========================================================================================");
             System.out.println(game);

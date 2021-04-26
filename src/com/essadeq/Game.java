@@ -19,17 +19,17 @@ public class Game {
 
         if (checkWinner(board, player1, player2)) return;
 
-        if (isDraw(board))
+        if (!isDraw(board))
             begin(board);
         else
             System.out.println("DRAW !!");
     }
 
     private boolean checkWinner(char[][] board, Player player2, Player player1) throws IOException {
-        if (isWinner(player2, board) && isDraw(board)) {
+        if (!isWinner(player2, board) && !isDraw(board)) {
             System.out.println(" => is " + player1.getName() + " - " + player1.getChoice());
             play(player1, board);
-        } else if (isWinner(player1, board) && isDraw(board)) {
+        } else if (!isWinner(player1, board) && !isDraw(board)) {
             System.out.println(" => winner " + player2.getName() + " - " + player2.getChoice());
             return true;
         }
@@ -72,7 +72,7 @@ public class Game {
             }
             if (winner) {
                 player.setScore(player.getScore() + 1);
-                return false;
+                return true;
             }
         }
 
@@ -87,7 +87,7 @@ public class Game {
             }
             if (winner) {
                 player.setScore(player.getScore() + 1);
-                return false;
+                return true;
             }
         }
 
@@ -102,7 +102,7 @@ public class Game {
 
         if (winner) {
             player.setScore(player.getScore() + 1);
-            return false;
+            return true;
         }
 
         for (int i = board.length - 1; i >= 0; i--) {
@@ -115,9 +115,9 @@ public class Game {
         }
         if (winner) {
             player.setScore(player.getScore() + 1);
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     private boolean isDraw(char[][] board) {
@@ -132,7 +132,7 @@ public class Game {
                 }
             }
         }
-        return !draw;
+        return draw;
     }
 
     private int getX(String position) {

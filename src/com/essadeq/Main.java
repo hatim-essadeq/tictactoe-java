@@ -7,10 +7,16 @@ import java.io.InputStreamReader;
 public class Main {
 
     Main() throws IOException {
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+\t WELCOME TO TIC TAC TOE CONSOLE GAME BY H@T!M : \t+");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        start();
+    }
+
+    private void start() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println("WELCOME TO TIC TAC TOE CONSOLE GAME BY H@T!M : \t ");
-        /*System.out.println("=> For 1 player : Tap '1' , For 2 players : Tap 2 ");
+         /*System.out.println("=> For 1 player : Tap '1' , For 2 players : Tap 2 ");
 
         String answer = reader.readLine();
 
@@ -28,19 +34,21 @@ public class Main {
         Player p1 = new Player("hatim", 'X');
         Player p2 = new Player("rhita", 'O');
         Game game = new Game(p1, p2);
-        char[][] board = {{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}};
-//        game.begin(board);
+        char[][] board;
 
-        System.out.println("START GAME ??");
-        String answer = reader.readLine();
+        System.out.println();
+        System.out.println("START GAME ...");
+        System.out.println();
+        String answer = "yes";
         while (answer.equals("yes")) {
-            game.begin(board);
             board = new char[][]{{'*', '*', '*'}, {'*', '*', '*'}, {'*', '*', '*'}};
+            game.begin(board);
             System.out.println("==========================================================================================");
             System.out.println(game);
             System.out.println("==========================================================================================");
             System.out.println("RESTART GAME ??");
             answer = reader.readLine();
+            System.out.println();
         }
         System.out.println("==========================================================================================");
         System.out.println(game);

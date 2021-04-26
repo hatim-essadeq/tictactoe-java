@@ -26,11 +26,11 @@ public class Game {
     }
 
     private boolean checkWinner(char[][] board, Player player2, Player player1) throws IOException {
-        if (!isWinner(player2, board) && isDraw(board)) {
-            System.out.println("is " + player1.getName() + " - " + player1.getChoice());
+        if (isWinner(player2, board) && isDraw(board)) {
+            System.out.println(" => is " + player1.getName() + " - " + player1.getChoice());
             play(player1, board);
-        } else if (!isWinner(player1, board) && isDraw(board)) {
-            System.out.println("winner " + player2.getName() + " - " + player2.getChoice());
+        } else if (isWinner(player1, board) && isDraw(board)) {
+            System.out.println(" => winner " + player2.getName() + " - " + player2.getChoice());
             return true;
         }
         return false;
@@ -71,9 +71,8 @@ public class Game {
                 }
             }
             if (winner) {
-                System.out.println("inside" + player.getChoice());
                 player.setScore(player.getScore() + 1);
-                return true;
+                return false;
             }
         }
 
@@ -88,7 +87,7 @@ public class Game {
             }
             if (winner) {
                 player.setScore(player.getScore() + 1);
-                return true;
+                return false;
             }
         }
 
@@ -103,7 +102,7 @@ public class Game {
 
         if (winner) {
             player.setScore(player.getScore() + 1);
-            return true;
+            return false;
         }
 
         for (int i = board.length - 1; i >= 0; i--) {
@@ -116,9 +115,9 @@ public class Game {
         }
         if (winner) {
             player.setScore(player.getScore() + 1);
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 
     private boolean isDraw(char[][] board) {
